@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="PhoneBook">
+	<property name="src.path" value="${basedir}/src" />
+	<property name="build.path" value="${basedir}/build" />
+	<property name="classes.path" value="${build.path}/classes" />
+	<property name="dist.path" value="${basedir}/dist" />
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${build.path}" />
+	</target>
+	<target name="compile" depends="init">
+		<mkdir dir="${classes.path}" />
+		<javac srcdir="${src.path}" destdir="${classes.path}"/>	
+	</target>
+	<target name="deploy" depends="compile">
+		<mkdir dir="${build.path}/lib" />
+		<jar jarfile="${build.path}/lib/${ant.project.name}-${DSTAMP}.jar" basedir="${classes.path}">
+			<manifest>
+				<attribute name="Main-Class" value="npa.phonebook.Main" />
+			</manifest>	
+		</jar>
+	</target>
+</project>
